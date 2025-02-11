@@ -72,7 +72,7 @@ function MainText() {
         material-metalness={0.8}
         material-roughness={0.2}
       >
-        TAFITI CUBESAT
+        
       </Text>
     </group>
   )
