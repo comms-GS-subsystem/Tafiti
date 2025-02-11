@@ -308,7 +308,7 @@ function App() {
                         }
                       }}
                     >
-                      Submit Application
+                      Send details
                     </Button>
                   </Box>
                 </form>
