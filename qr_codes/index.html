@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tafiti Cubesat QR Code</title>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #1e88e5, #7c4dff);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        #qrcode {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: inline-block;
+        }
+        p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tafiti Cubesat Project</h1>
+        <div id="qrcode"></div>
+        <p>Scan to visit our project page</p>
+    </div>
+
+    <script>
+        new QRCode(document.getElementById("qrcode"), {
+            text: window.location.href,
+            width: 256,
+            height: 256,
+            colorDark: "#1e88e5",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>
