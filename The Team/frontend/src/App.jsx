@@ -156,12 +156,12 @@ function MainForm() {
           <Box
             sx={{
               width: '100%',
-              p: 3,
+              p: { xs: 0, sm: 3 },
               height: '100vh',
               display: 'flex',
               alignItems: 'center',
-              '@media (max-width: 900px)': {
-                width: '100%'
+              '@media (max-width: 600px)': {
+                alignItems: 'flex-start',
               }
             }}
           >
@@ -169,18 +169,23 @@ function MainForm() {
               <Paper
                 elevation={24}
                 sx={{
-                  p: { xs: 2.5, sm: 3 },
+                  p: { xs: 2, sm: 2.5, md: 3 },
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 2,
                   background: 'rgba(13, 31, 45, 0.95)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderRadius: 2,
+                  borderRadius: { xs: 0, sm: 2 },
                   position: 'relative',
                   overflow: 'hidden',
                   maxWidth: '500px',
                   margin: '0 auto',
+                  width: '100%',
+                  height: { xs: '100vh', sm: 'auto' },
+                  '@media (max-width: 600px)': {
+                    maxWidth: '100%',
+                  },
                   '&::before': {
                     content: '""',
                     position: 'absolute',
@@ -192,7 +197,11 @@ function MainForm() {
                   }
                 }}
               >
-                <Box sx={{ textAlign: 'center', mb: 1 }}>
+                <Box sx={{ 
+                  textAlign: 'center', 
+                  mb: 1,
+                  mt: { xs: 4, sm: 0 }
+                }}>
                   <img 
                     src="/satellite-icon.svg" 
                     alt="Satellite Icon" 
@@ -234,8 +243,13 @@ function MainForm() {
                   </Typography>
                 </Box>
 
-                <form onSubmit={handleSubmit}>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+                  <Box sx={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    gap: { xs: 3, sm: 2 },
+                    mt: { xs: 4, sm: 2 }
+                  }}>
                     <TextField
                       required
                       fullWidth
@@ -244,10 +258,11 @@ function MainForm() {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       variant="outlined"
-                      size="small"
+                      size="medium"
                       sx={{
                         '& .MuiOutlinedInput-root': {
                           backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                          height: { xs: '56px', sm: '40px' }
                         }
                       }}
                     />
@@ -260,10 +275,11 @@ function MainForm() {
                       value={formData.university}
                       onChange={handleInputChange}
                       variant="outlined"
-                      size="small"
+                      size="medium"
                       sx={{
                         '& .MuiOutlinedInput-root': {
                           backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                          height: { xs: '56px', sm: '40px' }
                         }
                       }}
                     />
@@ -272,11 +288,11 @@ function MainForm() {
                       variant="outlined"
                       component="label"
                       fullWidth
-                      size="small"
+                      size="large"
                       sx={{
                         borderColor: 'rgba(255, 255, 255, 0.23)',
                         color: 'text.primary',
-                        py: 1,
+                        height: { xs: '56px', sm: '40px' },
                         '&:hover': {
                           borderColor: 'primary.main',
                           backgroundColor: 'rgba(30, 136, 229, 0.08)',
@@ -299,23 +315,21 @@ function MainForm() {
                         color="primary"
                         sx={{ 
                           mt: -1,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 1,
-                          fontSize: '0.8rem'
+                          fontSize: { xs: '0.9rem', sm: '0.875rem' }
                         }}
                       >
-                        Selected: {formData.photo.name}
+                        Selected file: {formData.photo.name}
                       </Typography>
                     )}
 
                     <Button
                       type="submit"
                       variant="contained"
-                      size="medium"
+                      fullWidth
+                      size="large"
                       sx={{
-                        mt: 1,
-                        py: 1,
+                        mt: { xs: 2, sm: 1 },
+                        height: { xs: '56px', sm: '40px' },
                         background: 'linear-gradient(45deg, #1e88e5 30%, #7c4dff 90%)',
                         boxShadow: '0 3px 5px 2px rgba(30, 136, 229, .3)',
                         '&:hover': {
@@ -323,7 +337,7 @@ function MainForm() {
                         }
                       }}
                     >
-                      Send details
+                      Submit
                     </Button>
                   </Box>
                 </form>
