@@ -93,7 +93,7 @@ function App() {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/submit/', data, {
+      const response = await axios.post('https://tafiti.onrender.com/api/submit/', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Accept': 'application/json',
