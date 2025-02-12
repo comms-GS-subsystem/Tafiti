@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'cloudinary_storage',
+    'cloudinary',
     'api',
 ]
 
@@ -135,6 +137,15 @@ STATIC_URL = 'static/'
 # Media files configuration
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Cloudinary configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'tafiti'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY', '871234567891234'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'your-api-secret'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # CORS configuration
 CORS_ALLOW_ALL_ORIGINS = True  # For development only
