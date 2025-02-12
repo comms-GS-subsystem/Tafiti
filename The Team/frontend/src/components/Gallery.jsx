@@ -72,7 +72,7 @@ function Gallery() {
                 }}
               >
                 <img
-                  src={image.url}
+                  src={image.photo_url}
                   alt={`Uploaded by ${image.full_name}`}
                   style={{ 
                     width: '100%',

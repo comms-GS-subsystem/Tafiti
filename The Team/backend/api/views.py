@@ -36,12 +36,10 @@ def get_images(request):
     try:
         submissions = UserSubmission.objects.all().order_by('-created_at')
         serializer = UserSubmissionSerializer(submissions, many=True)
-        
-        # Add full URL to photo field
         data = serializer.data
-        for item in data:
-            if item['photo']:
-                item['photo'] = request.build_absolute_uri(item['photo'])
+        
+        # Log the data for debugging
+        logger.info(f"Image data: {data}")
         
         return Response(data)
     except Exception as e:
