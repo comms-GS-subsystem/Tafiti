@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from .serializers import UserSubmissionSerializer
+from .models import UserSubmission
 import logging
 
 # Create your views here.
@@ -29,3 +30,23 @@ def submit_form(request):
     
     logger.error(f"Validation errors: {serializer.errors}")
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def get_images(request):
+    try:
+        submissions = UserSubmission.objects.all().order_by('-created_at')
+        serializer = UserSubmissionSerializer(submissions, many=True)
+        
+        # Add full URL to photo field
+        data = serializer.data
+        for item in data:
+            if item['photo']:
+                item['photo'] = request.build_absolute_uri(item['photo'])
+        
+        return Response(data)
+    except Exception as e:
+        logger.error(f"Error fetching images: {str(e)}")
+        return Response(
+            {'error': 'Error fetching images', 'detail': str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )

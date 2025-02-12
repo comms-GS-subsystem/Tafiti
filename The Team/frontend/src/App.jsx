@@ -13,6 +13,8 @@ import {
 } from '@mui/material'
 import axios from 'axios'
 import KenyaScene from './components/KenyaScene'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import Gallery from './components/Gallery'
 
 const theme = createTheme({
   palette: {
@@ -62,6 +64,19 @@ const theme = createTheme({
 })
 
 function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/" element={<MainForm />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  )
+}
+
+function MainForm() {
   const [formData, setFormData] = useState({
     fullName: '',
     university: '',
@@ -119,11 +134,11 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <Box>
       <Box
         sx={{
-          height: '100vh',
-          overflow: 'hidden',
+          minHeight: '100vh',
+          overflow: 'auto',
           backgroundColor: 'background.default',
           backgroundImage: 'url("/space-bg.svg")',
           backgroundSize: 'cover',
@@ -332,14 +347,14 @@ function App() {
           </Box>
         </Box>
       </Box>
-      <style jsx global>{`
+      <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
           100% { transform: translateY(0px); }
         }
       `}</style>
-    </ThemeProvider>
+    </Box>
   )
 }
 
