@@ -9,7 +9,8 @@ import {
   createTheme,
   ThemeProvider,
   Grid,
-  Fade
+  Fade,
+  CircularProgress
 } from '@mui/material'
 import axios from 'axios'
 import KenyaScene from './components/KenyaScene'
@@ -82,6 +83,7 @@ function MainForm() {
     university: '',
     photo: null
   })
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -100,6 +102,7 @@ function MainForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
     const data = new FormData()
     data.append('full_name', formData.fullName)
     data.append('university', formData.university)
@@ -130,6 +133,8 @@ function MainForm() {
         status: error.response?.status
       })
       alert('Error submitting form. Please try again.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -327,6 +332,7 @@ function MainForm() {
                       variant="contained"
                       fullWidth
                       size="large"
+                      disabled={isLoading}
                       sx={{
                         mt: { xs: 'auto', sm: 1 },
                         mb: { xs: 2, sm: 0 },
@@ -335,10 +341,23 @@ function MainForm() {
                         boxShadow: '0 3px 5px 2px rgba(30, 136, 229, .3)',
                         '&:hover': {
                           background: 'linear-gradient(45deg, #1976d2 30%, #6c3fff 90%)',
+                        },
+                        '&:disabled': {
+                          background: 'linear-gradient(45deg, #1e88e5 30%, #7c4dff 90%)',
+                          opacity: 0.7
                         }
                       }}
                     >
-                      Submit
+                      {isLoading ? (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <CircularProgress size={20} color="inherit" />
+                          <Typography variant="button">
+                            Submitting...
+                          </Typography>
+                        </Box>
+                      ) : (
+                        'Submit'
+                      )}
                     </Button>
                   </Box>
                 </form>
