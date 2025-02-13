@@ -138,7 +138,7 @@ function MainForm() {
       <Box
         sx={{
           minHeight: '100vh',
-          overflow: 'auto',
+          overflow: 'hidden', // Prevent horizontal scroll
           backgroundColor: 'background.default',
           backgroundImage: 'url("/space-bg.svg")',
           backgroundSize: 'cover',
@@ -160,8 +160,11 @@ function MainForm() {
               height: '100vh',
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'center',
               '@media (max-width: 600px)': {
-                alignItems: 'flex-start',
+                padding: 0,
+                margin: 0,
+                maxWidth: '100vw'
               }
             }}
           >
@@ -178,13 +181,15 @@ function MainForm() {
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: { xs: 0, sm: 2 },
                   position: 'relative',
-                  overflow: 'hidden',
-                  maxWidth: '500px',
-                  margin: '0 auto',
+                  overflow: 'auto',
+                  maxWidth: { xs: '100%', sm: '500px' },
                   width: '100%',
                   height: { xs: '100vh', sm: 'auto' },
+                  m: { xs: 0, sm: 'auto' },
                   '@media (max-width: 600px)': {
+                    margin: 0,
                     maxWidth: '100%',
+                    borderRadius: 0
                   },
                   '&::before': {
                     content: '""',
@@ -198,9 +203,9 @@ function MainForm() {
                 }}
               >
                 <Box sx={{ 
-                  textAlign: 'center', 
+                  textAlign: 'center',
                   mb: 1,
-                  mt: { xs: 4, sm: 0 }
+                  mt: { xs: 0, sm: 0 }
                 }}>
                   <img 
                     src="/satellite-icon.svg" 
@@ -248,7 +253,11 @@ function MainForm() {
                     display: 'flex', 
                     flexDirection: 'column', 
                     gap: { xs: 3, sm: 2 },
-                    mt: { xs: 4, sm: 2 }
+                    mt: { xs: 2, sm: 2 },
+                    '@media (max-width: 600px)': {
+                      flex: 1,
+                      justifyContent: 'center'
+                    }
                   }}>
                     <TextField
                       required
@@ -328,7 +337,8 @@ function MainForm() {
                       fullWidth
                       size="large"
                       sx={{
-                        mt: { xs: 2, sm: 1 },
+                        mt: { xs: 'auto', sm: 1 },
+                        mb: { xs: 2, sm: 0 },
                         height: { xs: '56px', sm: '40px' },
                         background: 'linear-gradient(45deg, #1e88e5 30%, #7c4dff 90%)',
                         boxShadow: '0 3px 5px 2px rgba(30, 136, 229, .3)',
