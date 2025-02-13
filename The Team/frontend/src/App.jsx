@@ -137,14 +137,14 @@ function MainForm() {
     <Box>
       <Box
         sx={{
-          minHeight: '100vh',
-          overflow: 'hidden', // Prevent horizontal scroll
+          height: '100vh',
+          overflow: 'hidden',
           backgroundColor: 'background.default',
-          backgroundImage: 'url("/space-bg.svg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
           display: 'flex',
+          position: 'fixed',
+          width: '100%',
+          top: 0,
+          left: 0
         }}
       >
         <Box sx={{ 
@@ -155,16 +155,17 @@ function MainForm() {
         }}>
           <Box
             sx={{
-              width: '100%',
-              p: { xs: 0, sm: 3 },
+              width: { xs: '100%', md: '22%' },
               height: '100vh',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              backgroundColor: 'background.default',
               '@media (max-width: 600px)': {
                 padding: 0,
                 margin: 0,
-                maxWidth: '100vw'
+                maxWidth: '100vw',
+                flex: 1
               }
             }}
           >
@@ -181,25 +182,15 @@ function MainForm() {
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: { xs: 0, sm: 2 },
                   position: 'relative',
-                  overflow: 'auto',
                   maxWidth: { xs: '100%', sm: '500px' },
                   width: '100%',
-                  height: { xs: '100vh', sm: 'auto' },
                   m: { xs: 0, sm: 'auto' },
                   '@media (max-width: 600px)': {
                     margin: 0,
                     maxWidth: '100%',
-                    borderRadius: 0
+                    borderRadius: 0,
+                    height: '100vh'
                   },
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '4px',
-                    background: 'linear-gradient(90deg, #1e88e5, #7c4dff)',
-                  }
                 }}
               >
                 <Box sx={{ 
@@ -244,7 +235,7 @@ function MainForm() {
                       lineHeight: 1.3,
                     }}
                   >
-                    The intervarsity space program
+                    The 3U nanosatellite space program
                   </Typography>
                 </Box>
 
@@ -357,14 +348,18 @@ function MainForm() {
           
           <Box
             sx={{
-              position: 'fixed',
+              position: 'relative',
               right: 0,
               top: 0,
-              width: '78%',
+              width: { xs: '0%', md: '78%' },
               height: '100vh',
               display: { xs: 'none', md: 'block' },
               backgroundColor: 'rgba(13, 31, 45, 0.95)',
               borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+              backgroundImage: 'url("/space-bg.svg")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              zIndex: 0
             }}
           >
             <KenyaScene />
